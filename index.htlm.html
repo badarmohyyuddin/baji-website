@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lingua Online – Live Online Language Classes</title>
+<style>
+:root{
+  --bg:#fbf8f3; --surface:#ffffff; --text:#1f2a37; --muted:#5b6675; --line:#e8e1d6;
+  --accent:#0f766e; --accent-text:#ffffff; --soft:#e3f2ef;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10161c; --surface:#18212a; --text:#eef2f6; --muted:#a3afbd; --line:#2a3642;
+    --accent:#2dd4bf; --accent-text:#06231f; --soft:#17302e; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10161c; --surface:#18212a; --text:#eef2f6; --muted:#a3afbd; --line:#2a3642;
+  --accent:#2dd4bf; --accent-text:#06231f; --soft:#17302e; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0 0 .5em}
+h1{font-size:clamp(2rem,6vw,3.4rem)} h2{font-size:clamp(1.5rem,4vw,2.1rem)} h3{font-size:1.15rem}
+p{margin:0 0 1em}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+.muted{color:var(--muted)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px;gap:12px;flex-wrap:wrap}
+.logo{font-family:Georgia,serif;font-size:1.3rem;font-weight:700;color:var(--text);text-decoration:none}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.95rem}
+nav a:hover{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-text);padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:600;border:0;cursor:pointer;font-size:1rem}
+.btn.alt{background:transparent;color:var(--text);border:1.5px solid var(--line)}
+.hero{padding:48px 0 64px}
+.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:560px}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.badge{background:var(--soft);color:var(--accent);padding:6px 14px;border-radius:999px;font-size:.9rem;font-weight:600}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card .emoji{font-size:1.8rem;display:block;margin-bottom:8px}
+.step-num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-text);font-weight:700;margin-bottom:10px}
+.price{font-size:2rem;font-family:Georgia,serif;font-weight:700}
+.card.featured{border:2px solid var(--accent)}
+.card ul{padding-left:18px;margin:12px 0 0;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:10px 0 0;color:var(--muted)}
+form{display:grid;gap:14px;max-width:520px}
+label{display:grid;gap:6px;font-weight:600;font-size:.95rem}
+input,select{font:inherit;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
+.alt-bg{background:var(--soft)}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="logo" href="#top" id="logo"></a>
+  <nav id="nav"></nav>
+</div></header>
+
+<main id="top">
+  <section class="hero"><div class="wrap">
+    <h1 id="hero-title"></h1>
+    <p class="lead" id="hero-sub"></p>
+    <div class="actions">
+      <a class="btn" href="#enroll" id="hero-cta"></a>
+      <a class="btn alt" href="#languages">See courses</a>
+      <a class="btn alt" id="hero-phone"></a>
+    </div>
+    <div class="badges" id="badges"></div>
+  </div></section>
+
+  <section id="languages"><div class="wrap">
+    <h2>Our courses</h2>
+    <p class="muted">All classes are live, online and taught by experienced teachers.</p>
+    <div class="grid" id="lang-grid"></div>
+  </div></section>
+
+  <section class="alt-bg" id="how"><div class="wrap">
+    <h2>How it works</h2>
+    <div class="grid" id="steps"></div>
+  </div></section>
+
+  <section id="pricing"><div class="wrap">
+    <h2>Simple pricing</h2>
+    <p class="muted" id="pricing-note"></p>
+    <div class="grid" id="plans"></div>
+  </div></section>
+
+  <section class="alt-bg" id="faq"><div class="wrap">
+    <h2>Questions</h2>
+    <div id="faq-list"></div>
+  </div></section>
+
+  <section id="enroll"><div class="wrap">
+    <h2>Enrol or book a free trial</h2>
+    <p class="muted">Fill in the form and we’ll contact you within one working day, or call us on <a id="enroll-phone" style="color:var(--accent);font-weight:600"></a>.</p>
+    <form id="enroll-form">
+      <label>Your name<input id="f-name" required></label>
+      <label>Email or WhatsApp number<input id="f-contact" required></label>
+      <label>Course<select id="f-lang"></select></label>
+      <label>Your level
+        <select id="f-level"><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Not sure</option></select>
+      </label>
+      <button class="btn" type="submit">Send request</button>
+    </form>
+  </div></section>
+</main>
+
+<footer><div class="wrap" id="footer"></div></footer>
+
+<script>
+/* ============================================================
+   EDIT YOUR WEBSITE HERE – change the text between quotes.
+   Add or remove items in any list by copying a line.
+   ============================================================ */
+const SITE = {
+  name: "Lingua Online",
+  tagline: "Learn a new language from home",
+  heroTitle: "Learn English and Korean with confidence.",
+  heroSub: "Live online classes in small groups or one-to-one, with friendly teachers and flexible timings.",
+  cta: "Book a free trial class",
+  badges: ["100% online", "Small groups (max 8)", "Free trial class", "Certificates"],
+
+  languages: [
+    { icon: "🇬🇧", name: "IELTS",           text: "English exam preparation for Academic and General Training." },
+    { icon: "🇬🇧", name: "PTE",             text: "English exam preparation with practice tests and feedback." },
+    { icon: "🇬🇧", name: "Spoken English",  text: "Speak fluently in daily life, study and work." },
+    { icon: "🇰🇷", name: "Korean",          text: "Korean language from beginner level, step by step." }
+  ],
+
+  steps: [
+    { title: "Book a free trial", text: "Pick a language and a time that suits you." },
+    { title: "Meet your teacher", text: "We check your level and suggest the right class." },
+    { title: "Join live on Zoom", text: "Attend from your phone or laptop. Recordings are shared." }
+  ],
+
+  pricingNote: "Prices per month. Cancel any time.",
+  plans: [
+    { name: "Group class",  price: "Rs 4,000", per: "/ month", featured: false,
+      points: ["3 classes a week", "Up to 8 students", "Class recordings"] },
+    { name: "Intensive",    price: "Rs 7,000", per: "/ month", featured: true,
+      points: ["5 classes a week", "Up to 6 students", "Weekly speaking practice", "Certificate"] },
+    { name: "One-to-one",   price: "Rs 12,000", per: "/ month", featured: false,
+      points: ["Your own teacher", "Your own schedule", "Custom lesson plan"] }
+  ],
+
+  faq: [
+    { q: "Do I need any experience?", a: "No. We have classes for complete beginners as well as advanced learners." },
+    { q: "What do I need to join?", a: "A phone or laptop, an internet connection and a quiet place. We use Zoom." },
+    { q: "What if I miss a class?", a: "Every class is recorded, and you can watch it later." },
+    { q: "How do I pay?", a: "Bank transfer, JazzCash or Easypaisa. We will send you the details after your trial." }
+  ],
+
+  contact: {
+    email: "hello@example.com",     // form requests are sent to this email
+    whatsapp: "923330687516",       // number with country code, no + or spaces
+    phoneText: "0333 0687516"
+  }
+};
+/* ============ end of editable area ============ */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+document.title = SITE.name + " – " + SITE.tagline;
+$("logo").textContent = "🌍 " + SITE.name;
+$("nav").innerHTML = [["languages","Courses"],["how","How it works"],["pricing","Pricing"],["faq","FAQ"],["enroll","Enrol"]]
+  .map(([id,l]) => `<a href="#${id}">${l}</a>`).join("");
+$("hero-title").textContent = SITE.heroTitle;
+$("hero-sub").textContent = SITE.heroSub;
+$("hero-cta").textContent = SITE.cta;
+const tel = "tel:+" + SITE.contact.whatsapp;
+$("hero-phone").textContent = "📞 " + SITE.contact.phoneText;
+$("hero-phone").href = tel;
+$("enroll-phone").textContent = SITE.contact.phoneText;
+$("enroll-phone").href = tel;
+$("badges").innerHTML = SITE.badges.map(b => `<span class="badge">${esc(b)}</span>`).join("");
+
+$("lang-grid").innerHTML = SITE.languages.map(l =>
+  `<div class="card"><span class="emoji">${l.icon}</span><h3>${esc(l.name)}</h3><p class="muted">${esc(l.text)}</p></div>`).join("");
+$("f-lang").innerHTML = SITE.languages.map(l => `<option>${esc(l.name)}</option>`).join("");
+
+$("steps").innerHTML = SITE.steps.map((s,i) =>
+  `<div class="card"><span class="step-num">${i+1}</span><h3>${esc(s.title)}</h3><p class="muted">${esc(s.text)}</p></div>`).join("");
+
+$("pricing-note").textContent = SITE.pricingNote;
+$("plans").innerHTML = SITE.plans.map(p =>
+  `<div class="card${p.featured ? " featured" : ""}"><h3>${esc(p.name)}</h3>
+   <div class="price">${esc(p.price)} <span class="muted" style="font-size:1rem;font-family:system-ui">${esc(p.per)}</span></div>
+   <ul>${p.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
+
+$("faq-list").innerHTML = SITE.faq.map(f =>
+  `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
+
+$("footer").innerHTML = `© ${new Date().getFullYear()} ${esc(SITE.name)} · ${esc(SITE.contact.email)} · <a href="tel:+${esc(SITE.contact.whatsapp)}" style="color:var(--accent)">${esc(SITE.contact.phoneText)}</a> ·
+  <a href="https://wa.me/${esc(SITE.contact.whatsapp)}" style="color:var(--accent)">WhatsApp us</a>`;
+
+$("enroll-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const body = `Name: ${$("f-name").value}\nContact: ${$("f-contact").value}\nLanguage: ${$("f-lang").value}\nLevel: ${$("f-level").value}`;
+  window.open("mailto:" + SITE.contact.email + "?subject=" + encodeURIComponent("Trial class request – " + $("f-lang").value) + "&body=" + encodeURIComponent(body), "_blank");
+});
+</script>
+</body>
+</html>
